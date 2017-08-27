@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Kismet/GameplayStatics.h"
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
@@ -16,14 +17,17 @@ public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
-protected:
+	void SetBarrelReference(UStaticMeshComponent* barrelToSet);
+
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void AimAt(FVector hitLocation);
+	void AimAt(FVector hitLocation, float launchSpeed);
 	
+private:
+	UStaticMeshComponent* barrel = nullptr;
+
 };
