@@ -21,7 +21,7 @@ void ATankPlayerController::BeginPlay()
 void ATankPlayerController::Tick(float deltaTime)
 {
 	Super::Tick(deltaTime);
-	AimAtCrosshair();
+	AimTowardsCrosshair();
 
 }
 
@@ -30,7 +30,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
-void ATankPlayerController::AimAtCrosshair()
+void ATankPlayerController::AimTowardsCrosshair()
 {
 	if(!GetControlledTank()) return;
 
@@ -40,8 +40,7 @@ void ATankPlayerController::AimAtCrosshair()
 	// Has "side-effect", is going to linetrace
 	if(GetSightRayHitLocation(hitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *hitLocation.ToString());
-
+		GetControlledTank()->AimAt(hitLocation);
 		// If it hits the landscape
 			// TODO Tell controlled tank to aim at this point
 	}
