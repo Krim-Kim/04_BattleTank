@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "Engine/World.h"
 
 void ATankPlayerController::BeginPlay()
 {
@@ -22,7 +23,6 @@ void ATankPlayerController::Tick(float deltaTime)
 {
 	Super::Tick(deltaTime);
 	AimTowardsCrosshair();
-
 }
 
 ATank* ATankPlayerController::GetControlledTank() const
@@ -41,8 +41,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if(GetSightRayHitLocation(hitLocation))
 	{
 		GetControlledTank()->AimAt(hitLocation);
-		// If it hits the landscape
-			// TODO Tell controlled tank to aim at this point
 	}
 }
 
