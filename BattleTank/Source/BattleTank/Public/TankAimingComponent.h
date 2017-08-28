@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "Kismet/GameplayStatics.h"
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
 // Forward Declaration
 class UTankBarrel;
+class UTankTurret;
 
 // Handles the Tank's Aiming
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -21,13 +21,14 @@ public:
 	UTankAimingComponent();
 
 	void SetBarrelReference(UTankBarrel* barrelToSet);
-
-	// TODO add SetTurretReference
+	void SetTurretReference(UTankTurret* turretToSet);
 
 	void AimAt(FVector hitLocation, float launchSpeed);
 	
 private:
 	UTankBarrel* barrel = nullptr;
+	UTankTurret* turret = nullptr;
 
 	void MoveBarrelTowards(FVector aimDirection);
+	void MoveTurretTowards(FVector aimDirection);
 };
