@@ -5,14 +5,11 @@
 
 void UTankTurret::Rotate(float relativeSpeed)
 {
-	// Move the barrel the right amount this frame
-	// Given a max elevation speed, and the frame time
 	relativeSpeed = FMath::Clamp<float>(relativeSpeed, -1, 1);
 	float rotationChange = relativeSpeed * maxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
-	float rawNewRotation = RelativeRotation.Yaw + rotationChange;
-	//float rotation = FMath::Clamp<float>(rawNewRotation, minRotationDegrees, maxRotationDegrees);
+	float rotation = RelativeRotation.Yaw + rotationChange;
 
-	SetRelativeRotation(FRotator(0, rawNewRotation, 0));
+	SetRelativeRotation(FRotator(0, rotation, 0));
 }
 
 
